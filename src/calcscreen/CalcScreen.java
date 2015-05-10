@@ -1,5 +1,9 @@
-package calcscreen;
+/*
+    <<-----Series Calculator----->>>
+    <------Calculus BC Term Project by Bensu Sicim
+*/
 
+package calcscreen;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
@@ -18,34 +22,33 @@ public class CalcScreen extends JDialog implements ActionListener{
         setContentPane( createContent() );
         setSize(550, 250);
         setLocationRelativeTo (null);
-        calcBut.addActionListener(this);
+        calcBut.addActionListener(this); //make the button functional
     }
     private Container createContent(){
         JPanel result = new JPanel();
         result.setBorder( BorderFactory.createEmptyBorder( 10, 10, 10, 10 ) );
-        // Create the layout
-        GroupLayout layout = new GroupLayout( result );
+        GroupLayout layout = new GroupLayout( result ); //create the layout
         result.setLayout( layout );
         layout.setAutoCreateGaps( true );
-        // Create the components we will put in the form
-        titleLabel = new JLabel( "Series Calculator" );
-        sequenceLabel = new JLabel( "Enter Sequence using \"n\":" );
-        sequenceTextField = new JTextField( 20 );
+        // Create the components we will put in the screen
+        titleLabel = new JLabel( "Series Calculator" ); //title
+        sequenceLabel = new JLabel( "Enter Sequence using \"n\":" ); 
+        sequenceTextField = new JTextField( 20 ); //sequence field
         initialLabel = new JLabel( "Enter First Bound:" );
-        boundInitial = new JTextField( 20 );
+        boundInitial = new JTextField( 20 ); //first bound field
         finalLabel = new JLabel( "Enter Last Bound" );
-        boundFinal = new JTextField( 20 );
-        calcBut = new JButton( "Calculate" );
-        resultLabel=new JLabel( " " );
+        boundFinal = new JTextField( 20 ); //last bound field
+        calcBut = new JButton( "Calculate" ); //button
+        resultLabel=new JLabel( " " ); //result/message board
         // Horizontally, we want to align the labels and the text fields
         // along the left (LEADING) edge
         layout.setHorizontalGroup( layout.createSequentialGroup()
-                                       .addGroup( layout.createParallelGroup( GroupLayout.Alignment.LEADING )
+                                       .addGroup( layout.createParallelGroup( GroupLayout.Alignment.LEADING ) //left part
                                                           .addComponent( sequenceLabel )
                                                           .addComponent( initialLabel )
                                                           .addComponent( finalLabel ) 
                                                           )
-                                       .addGroup( layout.createParallelGroup( GroupLayout.Alignment.LEADING )
+                                       .addGroup( layout.createParallelGroup( GroupLayout.Alignment.LEADING ) //right part
                                                           .addComponent(titleLabel)
                                                           .addComponent( sequenceTextField )
                                                           .addComponent( boundInitial )
@@ -56,31 +59,20 @@ public class CalcScreen extends JDialog implements ActionListener{
         // Vertically, we want to align each label with his textfield
         // on the baseline of the components
         layout.setVerticalGroup( layout.createSequentialGroup()
-                                     .addComponent( titleLabel )
-                                     .addGroup( layout.createParallelGroup( GroupLayout.Alignment.BASELINE )
+                                     .addComponent( titleLabel ) //title
+                                     .addGroup( layout.createParallelGroup( GroupLayout.Alignment.BASELINE ) //sequence
                                                         .addComponent( sequenceLabel )
                                                         .addComponent( sequenceTextField ) )
-                                     .addGroup( layout.createParallelGroup( GroupLayout.Alignment.BASELINE )
+                                     .addGroup( layout.createParallelGroup( GroupLayout.Alignment.BASELINE ) //initial bound
                                                         .addComponent( initialLabel )
                                                         .addComponent( boundInitial ) )
-                                     .addGroup( layout.createParallelGroup( GroupLayout.Alignment.BASELINE )
+                                     .addGroup( layout.createParallelGroup( GroupLayout.Alignment.BASELINE ) //final bound
                                                         .addComponent( finalLabel )
                                                         .addComponent( boundFinal ) 
                                                          )
-                                     .addComponent( calcBut )
-                                     .addComponent( resultLabel )
+                                     .addComponent( calcBut ) //button
+                                     .addComponent( resultLabel ) //result/message
         );
-        /*calcBut.addActionListener((ActionEvent e) -> {
-            String sequence = sequenceTextField.getText ();
-            try{
-                int init = (Integer.parseInt(sequenceTextField.getText ()));
-                int fin = (Integer.parseInt(sequenceTextField.getText ()));
-            }
-            catch(IllegalArgumentException a){
-                resultLabel.setText("Bounds should be integers");
-            }
-            //Calculator calculator=new Calculator(sequence);
-        });*/
         return result;
 }
   /*
@@ -96,25 +88,17 @@ public class CalcScreen extends JDialog implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String sequence = sequenceTextField.getText ();
             try{
-                int init = (Integer.parseInt(boundInitial.getText ()));
+                int init = (Integer.parseInt(boundInitial.getText ())); //make the bound inputs integer
                 int fin = (Integer.parseInt(boundFinal.getText ()));
                 resultLabel.setText("hey");
             }
             catch(IllegalArgumentException a){
-                resultLabel.setText("Bounds should be integers");
+                resultLabel.setText("Bounds should be integers"); //if input is not a number, display this message
             }
             //Calculator calculator=new Calculator(sequence);
     }
 }
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author cem
- */
+
 class Calculator {
     private String DirInput,formatted;
     private int init,fin;
